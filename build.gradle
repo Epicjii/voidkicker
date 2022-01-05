@@ -52,3 +52,9 @@ processResources {
         expand props
     }
 }
+
+task getCurrentVersion {
+    doFirst {
+        System.out.println(version)
+    }
+}
