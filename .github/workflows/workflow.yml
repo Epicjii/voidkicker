@@ -24,13 +24,6 @@ jobs:
           java-version: '8'
           distribution: 'temurin'
 
-#      - name: Generate Version
-#        uses: HardNorth/github-version-generate@v1.1.1
-#        with:
-#          version-source: file
-#          version-file: build.gradle
-#          version-file-extraction-pattern: "(?<=version = ').+(?<=')"
-
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
@@ -42,13 +35,13 @@ jobs:
           version=$(./gradlew getCurrentVersion -q --console=plain)
           echo "version=$version" >> $GITHUB_ENV 
 
-
       - name: build-gradle
         run: ./gradlew build
 
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
+          generateReleaseNotes: true
           artifacts: 'build/libs/*.jar'
           tag: ${{ env.version }}
           token: ${{ secrets.GITHUB_TOKEN }}
