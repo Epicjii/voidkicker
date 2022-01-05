@@ -37,6 +37,12 @@ jobs:
       - name: set permissions
         run: chmod u+x ./gradlew
 
+      - name: get version
+        run: |
+          VERSION=./gradlew getCurrentVersion -q --console=plain
+          echo "version=$VERSION" >> $GITHUB_ENV 
+
+
       - name: build-gradle
         run: ./gradlew build
 
@@ -44,5 +50,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: 'build/libs/*.jar'
-          tag: 'v1.0.0'
+          tag: ${{ env.version }}
           token: ${{ secrets.GITHUB_TOKEN }}
