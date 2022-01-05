@@ -25,7 +25,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Generate Version
-      - uses: HardNorth/github-version-generate@v1.1.1
+        uses: HardNorth/github-version-generate@v1.1.1
         with:
           version-source: file
           version-file: build.gradle
