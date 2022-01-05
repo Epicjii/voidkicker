@@ -39,8 +39,8 @@ jobs:
 
       - name: get version
         run: |
-          VERSION=./gradlew getCurrentVersion -q --console=plain
-          echo "version=$VERSION" >> $GITHUB_ENV 
+          version=$(./gradlew getCurrentVersion -q --console=plain)
+          echo "version=$version" >> $GITHUB_ENV 
 
 
       - name: build-gradle
